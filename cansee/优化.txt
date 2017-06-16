@@ -1,0 +1,33 @@
+/*
+**第一阶段结束，
+**下面的优化第二阶段在来弄
+**
+/
+Promise——解决异步操作
+
+异步操作：性能高、写程序非常麻烦
+同步操作：性能低、写程序很简单
+
+Promise：性能高、很简单
+
+衍生产品： Promise、generator、async/await
+
+express 终于知道知己的回调地狱了的可怕性了 就研发了 KOA  官网： http://koajs.com/
+
+
+
+express 团队放弃express 投奔 koa 单设计思想差不多，所以express就不多深入了！！！
+
+
+
+
+
+
+
+
+
+
+
+
+
+

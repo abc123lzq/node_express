@@ -1,0 +1,43 @@
+const express = require('express');
+const mysql = require('mysql');
+
+
+var db = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '123456',
+    database: 'learn'
+});
+
+module.exports = function () {
+    var router = express.Router();
+
+    router.get('/get_banners', (req, res) => {
+        db.query(`SELECT *FROM banner_table`, (err, data) => {
+            if (err) {
+                console.error(err);
+                req.status(500).send('数据库查询失败').end()
+            } else {
+                res.send(data).end();
+            }
+        })
+    });
+    // http://localhost:8080/get_banners
+    // ok一个接口写完了游览器输入就可看到接口数据了
+    //第三个接口过程和第一个一样就不重复操作了
+
+    router.get('/get_custom_evaluations', (req, res) => {
+        db.query(`SELECT *FROM custom_evaluation_table`, (err, data) => {
+            if (err) {
+                console.error(err);
+                req.status(500).send('数据库查询失败').end()
+            } else {
+                res.send(data).end();
+            }
+        })
+    });
+
+    return router;
+};
+
+

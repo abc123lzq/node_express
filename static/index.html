@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pc前端页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, .sb strong {
+            color: red;
+        }
+
+        p {
+            color: #999;
+        }
+
+        a {
+            color: blue;
+        }
+
+    </style>
+</head>
+<body>
+<strong>这里我们就不用mv*三大框架了,随便AJAX也能对接接口!!</strong>
+<br>
+<br>
+<br>
+<h1>1</h1>
+<br>
+<p>2</p>
+<br>
+<a href="">链接</a>
+<br><br><br>
+<div class="sb">
+    <strong>评论板块:</strong>
+    <br>
+    <br>
+    <img src="" alt="头像" width="50" height="auto" style="vertical-align: middle;">
+    &nbsp;&nbsp;&nbsp;<b>标题</b>
+    <br>
+    <br>
+    <b>内容</b>
+</div>
+
+
+<script src="jquery-3.2.0.min.js"></script>
+<script>
+    (function ($) {
+
+
+        function getData(url, callBack) {
+            $.ajax({
+                url: url,
+                type: 'get',
+                data: {},
+                success: callBack,
+            });
+        }
+
+
+        // banner
+        getData('http://localhost:8080/get_banners', function (data) {
+            console.log(data);
+            $('h1').text(data[1].title);
+            $('p').text(data[1].description);
+            $('a').attr('href', data[1].href);
+        });
+
+        //  评论
+        getData('http://localhost:8080/get_custom_evaluations', function (data) {
+            console.log(data);
+            $('b').eq(0).text('标题:' + data[0].title);
+            $('b').eq(1).text('内容:' + data[0].description);
+            $('img').attr('src', 'upload/' + data[0].src)
+        });
+
+
+    })(jQuery)
+</script>
+</body>
+</html>
